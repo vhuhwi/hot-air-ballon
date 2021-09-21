@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/magnet.png" type="Texture" id=1]
+[ext_resource path="res://scripts/fall_script.gd" type="Script" id=2]
+[ext_resource path="res://assets/magnet2.png" type="Texture" id=3]
+[ext_resource path="res://assets/magnet1.png" type="Texture" id=4]
+[ext_resource path="res://assets/magnet3.png" type="Texture" id=5]
+[ext_resource path="res://assets/magnet4.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "magnet",
+"speed": 3.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.6745, 13.3644 )
+
+[node name="magnet" type="KinematicBody2D" groups=[
+"mag",
+]]
+scale = Vector2( 0.8, 0.8 )
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="magnet" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -0.353546 )
+frames = SubResource( 1 )
+animation = "magnet"
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -0.749146, 4.49492 )
+shape = SubResource( 2 )

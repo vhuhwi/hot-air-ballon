@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://assets/hotbalonicon.png" type="Texture" id=2]
+[ext_resource path="res://assets/coin.png" type="Texture" id=3]
+[ext_resource path="res://assets/thons.png" type="Texture" id=4]
+
+[node name="main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="start" type="Button" parent="."]
+margin_left = 156.798
+margin_top = 376.682
+margin_right = 206.798
+margin_bottom = 396.682
+text = "START"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="thons" type="Sprite" parent="."]
+position = Vector2( 84.0051, 266.639 )
+texture = ExtResource( 4 )
+
+[node name="thons2" type="Sprite" parent="."]
+position = Vector2( 255.058, 427.001 )
+texture = ExtResource( 4 )
+
+[node name="thons3" type="Sprite" parent="."]
+position = Vector2( 344.148, 133.005 )
+texture = ExtResource( 4 )
+
+[node name="thons4" type="Sprite" parent="."]
+position = Vector2( 28.7694, 27.8785 )
+texture = ExtResource( 4 )
+
+[node name="hotbalonicon" type="Sprite" parent="."]
+position = Vector2( 182.004, 508.964 )
+texture = ExtResource( 2 )
+
+[node name="coin" type="Sprite" parent="."]
+position = Vector2( 249.712, 320.093 )
+texture = ExtResource( 3 )
+
+[node name="coin2" type="Sprite" parent="."]
+position = Vector2( 96.4778, 104.496 )
+texture = ExtResource( 3 )
+
+[node name="coin3" type="Sprite" parent="."]
+position = Vector2( 237.24, 154.386 )
+texture = ExtResource( 3 )
+
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]

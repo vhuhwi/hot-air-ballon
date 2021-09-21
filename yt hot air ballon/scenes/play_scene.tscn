@@ -1,0 +1,121 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/play_scene.gd" type="Script" id=1]
+[ext_resource path="res://assets/hotbalonicon.png" type="Texture" id=2]
+[ext_resource path="res://scripts/player.gd" type="Script" id=3]
+[ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/magnet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/invisible_power.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/thons.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/hotbalonicon1.png" type="Texture" id=8]
+[ext_resource path="res://assets/hotbalonicon2.png" type="Texture" id=9]
+[ext_resource path="res://assets/hotbalonicon3.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "power",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "const",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 6.76465
+height = 19.0349
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 247.217, 10 )
+
+[node name="play_scene" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+Coin = ExtResource( 4 )
+Magnet = ExtResource( 5 )
+Thons = ExtResource( 7 )
+Visiblity = ExtResource( 6 )
+incr = 1.15
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="score" type="Label" parent="CanvasLayer"]
+margin_left = 13.149
+margin_top = 20.1587
+margin_right = 53.149
+margin_bottom = 34.1587
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hi_score" type="Label" parent="CanvasLayer"]
+margin_left = 201.587
+margin_top = 20.1587
+margin_right = 257.587
+margin_bottom = 34.1587
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "hi 01111"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player" type="Area2D" parent="."]
+position = Vector2( 183.851, 541.061 )
+scale = Vector2( 1.5, 1.5 )
+collision_mask = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="hotbalonicon" type="AnimatedSprite" parent="player"]
+position = Vector2( 2.24495, 0 )
+frames = SubResource( 1 )
+animation = "const"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( 2.55902, -1.06067 )
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="player"]
+
+[node name="drop_timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="level_timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 170, 615 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[node name="delay_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="magnet_force" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="visibility_timer" type="Timer" parent="."]
+wait_time = 8.0
+[connection signal="body_entered" from="player" to="." method="_on_player_body_entered"]
+[connection signal="timeout" from="drop_timer" to="." method="_on_drop_timer_timeout"]
+[connection signal="timeout" from="level_timer" to="." method="_on_drop_timer_timeout"]
+[connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="delay_timer" to="." method="_on_delay_timer_timeout"]
+[connection signal="timeout" from="magnet_force" to="." method="_on_magnet_force_timeout"]
+[connection signal="timeout" from="visibility_timer" to="." method="_on_visibility_timer_timeout"]

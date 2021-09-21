@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/Control.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quit" type="Button" parent="."]
+margin_left = 151.453
+margin_top = 340.323
+margin_right = 163.453
+margin_bottom = 360.323
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="replay" type="Button" parent="."]
+margin_left = 144.326
+margin_top = 308.251
+margin_right = 202.326
+margin_bottom = 328.251
+text = "REPLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score" type="Label" parent="."]
+margin_left = 25.4846
+margin_top = 26.4285
+margin_right = 65.4846
+margin_bottom = 40.4285
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hi_score" type="Label" parent="."]
+margin_left = 199.158
+margin_top = 23.5969
+margin_right = 239.158
+margin_bottom = 37.5969
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "HI 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="game over" type="Label" parent="."]
+margin_left = 109.19
+margin_top = 151.125
+margin_right = 185.19
+margin_bottom = 182.125
+rect_scale = Vector2( 3, 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "GAME
+ OVER"
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="replay" to="." method="_on_replay_pressed"]

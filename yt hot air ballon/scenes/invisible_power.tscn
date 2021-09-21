@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/visibility.png" type="Texture" id=1]
+[ext_resource path="res://scripts/fall_script.gd" type="Script" id=2]
+[ext_resource path="res://assets/visibility2.png" type="Texture" id=3]
+[ext_resource path="res://assets/visibility1.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "power",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 8.42453
+
+[node name="invisible_power" type="KinematicBody2D" groups=[
+"inv",
+]]
+position = Vector2( 0.396851, -1.38898 )
+scale = Vector2( 1.7, 1.7 )
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="visibility" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "power"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
